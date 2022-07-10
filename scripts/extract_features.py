@@ -66,9 +66,9 @@ def extract_model_features(mel_spec, model_number):
     if model_number == "2":
         path_to_model = config_file.TEMP_POOLING_MODEL
         model = Musicnn(y_input_dim=96,
-                        filter_type="timbral",
+                        # filter_type="timbral",
                         timbral_k_height=0.7,
-                        temporal_k_width=1.,
+                        temporal_k_width=1,
                         filter_factor=1.6,
                         pool_type="temporal")
     elif model_number == "3":
@@ -98,20 +98,26 @@ def extract_model_features(mel_spec, model_number):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description="Compute mel spectrogram of input audio")
+    # # parser = argparse.ArgumentParser(
+    # #     description="Compute mel spectrogram of input audio")
 
-    parser.add_argument("input_audio", type=str, help="path to input audio")
-    parser.add_argument("output_path",
-                        type=str,
-                        help="path to save mel spectrogram to")
-    parser.add_argument("model_number",
-                        type=str,
-                        help="number of pretrained model to load - 2 is best")
-    args = parser.parse_args()
+    # # parser.add_argument("input_audio", type=str, help="path to input audio")
+    # # parser.add_argument("output_path",
+    # #                     type=str,
+    # #                     help="path to save mel spectrogram to")
+    # # parser.add_argument("model_number",
+    # #                     type=str,
+    # #                     help="number of pretrained model to load - 2 is best")
+    # # args = parser.parse_args()
 
-    input_audio_path = args.input_audio
-    output_path = args.output_path
-    model_number = args.model_number
+    # input_audio_path = args.input_audio
+    # output_path = args.output_path
+    # model_number = args.model_number
+    # mel_spec = obtain_audio_rep(input_audio_path, output_path)
+    # extract_model_features(mel_spec, model_number)
+
+    input_audio_path = "./original_resampled.mp3" 
+    output_path = "./mel.pkl" 
+    model_number = "2"
     mel_spec = obtain_audio_rep(input_audio_path, output_path)
     extract_model_features(mel_spec, model_number)
